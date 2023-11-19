@@ -1,6 +1,6 @@
 
 services:
-  jupyter:
+  jupyter-notebook:
     build:
       context: .
       dockerfile: Dockerfile #Que busque la imagen en la carpeta actual para que lea el Dockerfile
@@ -8,3 +8,4 @@ services:
       - "8888:8888"  
     volumes:
       - ./workspace:/home/jovyan/work
+    container_name: jupyter-notebook
