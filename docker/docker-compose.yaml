@@ -7,5 +7,5 @@ services:
     ports:
       - "8888:8888"  
     volumes:
-      - ./workspace:/home/jovyan/work
+      - ../workspace:/home/jovyan/work
     container_name: jupyter-notebook
