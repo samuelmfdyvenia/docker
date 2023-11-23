@@ -9,3 +9,13 @@ services:
     volumes:
       - ../workspace:/home/jovyan/work
     container_name: jupyter-notebook
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: myuser
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    
