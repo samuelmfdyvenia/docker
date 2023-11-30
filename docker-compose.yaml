@@ -3,9 +3,40 @@ services:
   jupyter-notebook:
     build:
       context: .
-      dockerfile: Dockerfile #Que busque la imagen en la carpeta actual para que lea el Dockerfile
+      dockerfile: Dockerfile 
     ports:
       - "8888:8888"  
     volumes:
       - ./workspace:/home/jovyan/work
     container_name: jupyter-notebook
+  
+  postgres-db:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: myuser
+      POSTGRES_DB: postgres
+      POSTGRES_PORT: "5432"
+    container_name: postgres-db-1
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: web_pgadmin
+    restart: on-failure
+    volumes:
+    - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - 5435:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "user@postgres.com"
+      PGADMIN_DEFAULT_PASSWORD:  "example"
+  
+
+volumes:
+  db-data:
+  pgadmin-data:
